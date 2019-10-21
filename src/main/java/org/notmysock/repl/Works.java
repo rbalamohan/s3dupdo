@@ -238,6 +238,9 @@ public abstract class Works {
 
     public void run() {
       CopyOp op = this.queue.poll();
+      if (op == null) {
+        return;
+      }
       Thread.currentThread().setName(
           String.format("CopyWorker-%02d", counter.getAndIncrement()));
       final FileSystem srcFS;
